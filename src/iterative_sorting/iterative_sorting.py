@@ -1,25 +1,55 @@
 # TO-DO: Complete the selection_sort() function below
+# runtime: O(n * n) = O(n^2)
 def selection_sort(arr):
-    # loop through n-1 elements
-    for i in range(0, len(arr) - 1):
+    # iterate through the array (represents the sorted-unsorted cur_index 
+    # moving across the array)
+    for i in range(len(arr)):  # O(n)
+        # index of the cur_index, as well as the index we're going to 
+        # swap the smallest element with 
+        # cur_index = i
         cur_index = i
+
+        smallest_value = arr[cur_index]
         smallest_index = cur_index
-        # TO-DO: find next smallest element
-        # (hint, can do in 3 loc)
-        # Your code here
+        # smallest_index = cur_index
+        # finding the smallest element 
+        # in the "unsorted" portion of the array 
+        for unsorted_index in range(cur_index, len(arr)):  # O(n)
+            if arr[unsorted_index] < smallest_value:
+                smallest_value = arr[unsorted_index]
+                smallest_index = unsorted_index
 
+        # `smallest_index` is the index of the smallest element in the unsorted portion 
 
-        # TO-DO: swap
-        # Your code here
+        # once that's found, swap it with the element on the right edge 
+        # of the sorted-unsorted cur_index 
+
+        arr[cur_index], arr[smallest_index] = arr[smallest_index], arr[cur_index]
 
     return arr
 
 
+arr = [5, 55, 6, 67, 12, 9, 25, 43, 16]
+print(selection_sort(arr))
+
 # TO-DO:  implement the Bubble Sort function below
 def bubble_sort(arr):
-    # Your code here
-
-
+    # we know all the elements are in sorted order when we do a full
+    # pass through the array and perform no swaps 
+    swaps_occurred = True
+    # iterating through the arr and looking at elements two at a time 
+    # swapping them if they're out of order 
+    while swaps_occurred:
+        swaps_occurred = False
+        # if we do this all the way through, all the elements will 
+        # eventually end up in sorted order 
+        for i in range(len(arr) - 1):
+            # we need to swap if arr[i] > arr[i+1]
+            if arr[i] > arr[i+1]:
+                # swap them
+                arr[i], arr[i+1] = arr[i+1], arr[i]
+                swaps_occurred = True
+    
     return arr
 
 '''
